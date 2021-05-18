@@ -1,0 +1,55 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+      
+jobs:
+  build:
+    runs-on: windows-2019
+
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+        
+    - name: Restore dependencies
+      run: dotnet restore Mapping_Tools_Net5
+      
+    - name: Build
+      run: dotnet build Mapping_Tools_Net5 -c Release --no-restore
+      
+    - name: Test
+      run: dotnet test Mapping_Tools_Net5 --no-build --verbosity normal
+      
+    - name: Set Nuget Package Path
+      run: $env:packagePath = ".\Mapping_Tools_Net5\bin\Release\MappingToolsNet5." + $(${{ github.ref }}) + ".nupkg"
+      
+    - name: Create Squirrel Release
+      run: \packages\squirrel.windows.2.0.1\tools\Squirrel.exe --releasify $env:packagePath
+      
+    - name: Create Release
+      uses: actions/create-release@latest
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        body: |
+          Automated Release by GitHub Action CI
+        draft: false
+        prerelease: true
+        
+    - name: Upload Release Asset (x64)
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./SampleX64.ZIP
+        asset_name: SampleX64.ZIP
+        asset_content_type: application/zip
