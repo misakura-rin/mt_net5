@@ -4,9 +4,10 @@ using Mapping_Tools.Classes.SystemTools;
 using Mapping_Tools.Classes.ToolHelpers;
 using Mapping_Tools.Views;
 using Mapping_Tools.Views.Standard;
-using Mapping_Tools_Net5_Updater;
+using Mapping_Tools_Net5.Updater;
 using MaterialDesignThemes.Wpf;
 using System;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -22,7 +23,7 @@ namespace Mapping_Tools {
 
     public partial class MainWindow {
         private bool autoSave = true;
-        private readonly IUpdater updater;
+        private readonly IUpdateManager _updateManager;
 
         public ViewCollection Views;
         public ListenerManager ListenerManager;
@@ -42,10 +43,7 @@ namespace Mapping_Tools {
                 AppDataPath = Path.Combine(AppCommon, "Mapping Tools");
                 ExportPath = Path.Combine(AppDataPath, "Exports");
                 HttpClient = new HttpClient();
-
-                updater = new Updater();
-
-                Task.Run(async () => await updater.TryUpdating());
+                _updateManager = new UpdateManager("misakura-rin", "mt_net5", "release.zip");
 
                 InitializeComponent();
 
@@ -75,6 +73,9 @@ namespace Mapping_Tools {
             SessionhasAdminRights = IsUserAdministrator();
 
             try {
+                _updateManager.HasFetchedUpdates += OnHasFetchedUpdates;
+
+                Task.Run(async () => await _updateManager.InitUpdateAsync());
             }
             catch( Exception ex ) {
                 Console.WriteLine(ex.Message);
@@ -95,6 +96,12 @@ namespace Mapping_Tools {
                 item.Click += ViewSelectMenuItemOnClick;
                 return item;
             }).OrderBy(o => o.Header);
+        }
+
+        private void OnHasFetchedUpdates(object sender, bool hasUpdate) {
+            if( hasUpdate ) {
+                new UpdaterWindow(_updateManager).Show();
+            }
         }
 
         private void Window_Closing(object sender, EventArgs e) {
@@ -182,24 +189,6 @@ namespace Mapping_Tools {
             }
             return isAdmin;
         }
-
-        /*
-                private void AutoUpdaterOnParseUpdateInfoEvent(ParseUpdateInfoEventArgs args) {
-                    try {
-                        dynamic json = JsonConvert.DeserializeObject(args.RemoteData);
-                        args.UpdateInfo = new UpdateInfoEventArgs {
-                            CurrentVersion = json.version,
-                            ChangelogURL = json.changelog,
-                            Mandatory = json.mandatory,
-                            DownloadURL = json.url
-                        };
-                    }
-                    catch( Exception ex ) {
-                        Console.WriteLine(ex.Message);
-                    }
-                }
-
-        */
 
         public object GetCurrentView() {
             return DataContext;

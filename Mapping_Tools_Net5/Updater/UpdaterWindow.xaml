@@ -1,0 +1,22 @@
+﻿<Window x:Class="Mapping_Tools_Net5.Updater.UpdaterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mapping_Tools_Net5.Updater"
+        mc:Ignorable="d"
+        Title="Mapping Tools - Updater"
+        ResizeMode="CanResize"
+        Width="600"
+        Height="400"
+        AllowsTransparency="False"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        ShowInTaskbar="True"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        Background="{DynamicResource MaterialDesignPaper}">
+    <Grid>
+        <ProgressBar Name="progressBar" Minimum="0" Maximum="100"></ProgressBar>
+    </Grid>
+</Window>

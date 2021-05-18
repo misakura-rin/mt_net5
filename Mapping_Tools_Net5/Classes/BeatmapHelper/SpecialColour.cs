@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows.Media;
-using JetBrains.Annotations;
+using Mapping_Tools.Annotations;
 
 namespace Mapping_Tools.Classes.BeatmapHelper {
 
