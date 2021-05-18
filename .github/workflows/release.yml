@@ -28,7 +28,7 @@ jobs:
       
     - uses: papeloto/action-zip@v1
       with:
-        files: Mapping_tools_Net5/bin/Release/
+        files: Mapping_tools_Net5/bin/Release/net5.0-windows/
         dest: release.zip
       
     - name: Create Release
