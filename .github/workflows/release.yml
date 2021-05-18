@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - "*.*.*"
+      - "v*.*.*"
       
 jobs:
   build:
@@ -26,11 +26,10 @@ jobs:
     - name: Test
       run: dotnet test Mapping_Tools_Net5 --no-build --verbosity normal
       
-    - name: Set Nuget Package Path
-      run: $env:packagePath = ".\Mapping_Tools_Net5\bin\Release\MappingToolsNet5." + $(${{ github.ref }}) + ".nupkg"
-      
-    - name: Create Squirrel Release
-      run: \packages\squirrel.windows.2.0.1\tools\Squirrel.exe --releasify $env:packagePath
+    - uses: papeloto/action-zip@v1
+      with:
+        files: Mapping_tools_Net5/bin/Release/
+        dest: release.zip
       
     - name: Create Release
       uses: actions/create-release@latest
@@ -38,11 +37,11 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
+        release_name: ${{ github.ref }}
         body: |
           Automated Release by GitHub Action CI
         draft: false
-        prerelease: true
+        prerelease: false
         
     - name: Upload Release Asset (x64)
       uses: actions/upload-release-asset@v1
@@ -50,6 +49,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./SampleX64.ZIP
-        asset_name: SampleX64.ZIP
+        asset_path: release.zip
+        asset_name: release.zip
         asset_content_type: application/zip
