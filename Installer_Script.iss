@@ -5,7 +5,7 @@
 #define MyAppVersion "0.0.0"
 #define MyAppPublisher "OliBomby"
 #define MyAppURL "https://mappingtools.github.io/"
-#define MyAppExeName "Mapping Tools.exe"
+#define MyAppExeName "Mapping Tools Installer.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -37,33 +37,33 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\EditorReader.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.deps.json.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.dll.config"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.runtimeconfig.dev.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.runtimeconfig.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\MaterialDesignColors.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\MaterialDesignThemes.Wpf.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\Microsoft.WindowsAPICodePack.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\Microsoft.WindowsAPICodePack.Shell.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\NAudio.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\NAudio.Vorbis.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\NonInvasiveKeyboardHookLibrary.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\NVorbis.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\OggVorbisEncoder.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\Onova.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\OsuMemoryDataProvider.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\Overlay.NET.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\Process.NET.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\ProcessMemoryDataFinder.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\SharpDX.Direct2D1.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\SharpDX.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\SharpDX.DXGI.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: ".\Mapping_Tools_Net5\bin\Release\net5.0-windows\SHARPDX.Mathematics.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: Mapping_Tools_Net5\bin\Release\net5.0-windows\EditorReader.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.deps.json.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.dll.config"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.pdb"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.runtimeconfig.dev.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.runtimeconfig.json"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\MaterialDesignColors.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\MaterialDesignThemes.Wpf.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Microsoft.WindowsAPICodePack.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Microsoft.WindowsAPICodePack.Shell.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\NAudio.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\NAudio.Vorbis.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\NonInvasiveKeyboardHookLibrary.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\NVorbis.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\OggVorbisEncoder.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Onova.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\OsuMemoryDataProvider.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Overlay.NET.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Process.NET.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\ProcessMemoryDataFinder.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\SharpDX.Direct2D1.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\SharpDX.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\SharpDX.DXGI.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\SHARPDX.Mathematics.dll"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
