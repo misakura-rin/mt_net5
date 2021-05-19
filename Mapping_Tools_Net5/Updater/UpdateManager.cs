@@ -1,4 +1,5 @@
 ﻿using Onova;
+using Onova.Models;
 using Onova.Services;
 using System;
 using System.Threading;
@@ -11,12 +12,13 @@ namespace Mapping_Tools_Net5.Updater {
         IPackageResolver PackageResolver { get; set; }
         EventWaitHandle Lock { get; }
         bool RestartAfterUpdate { get; set; }
-
-        event EventHandler<bool> HasFetchedUpdates;
+        CheckForUpdatesResult UpdatesResult { get; }
 
         event EventHandler IsReadyToUpdate;
 
-        Task InitUpdateAsync();
+        Task<bool> FetchUpdateAsync();
+
+        Task StartUpdateAsync();
     }
 
     public class UpdateManager :IUpdateManager {
@@ -24,6 +26,7 @@ namespace Mapping_Tools_Net5.Updater {
         public IPackageResolver PackageResolver { get; set; }
         public EventWaitHandle Lock { get; } = new EventWaitHandle(false, EventResetMode.AutoReset);
         public bool RestartAfterUpdate { get; set; }
+        public CheckForUpdatesResult UpdatesResult { get; private set; }
 
         public event EventHandler<bool> HasFetchedUpdates;
 
@@ -37,32 +40,37 @@ namespace Mapping_Tools_Net5.Updater {
             PackageResolver = new GithubPackageResolver(repoOwner, repoName, assetNamePattern);
         }
 
-        /// <summary>
-        /// Initializes updater
-        /// </summary>
         /// <exception cref="LockFileNotAcquiredException"></exception>
         /// <exception cref="UpdaterAlreadyLaunchedException "></exception>
-        /// <returns>True if there are new updates and the updater could successfully launch itself and false if there are no new updates.</returns>
-        public async Task InitUpdateAsync() {
+        public async Task<bool> FetchUpdateAsync() {
             using var manager = new Onova.UpdateManager(PackageResolver, new ZipPackageExtractor());
 
-            var result = await manager.CheckForUpdatesAsync();
+            UpdatesResult = await manager.CheckForUpdatesAsync();
 
-            if( result.CanUpdate ) {
-                HasFetchedUpdates?.Invoke(this, true);
+            return UpdatesResult.CanUpdate;
+        }
 
-                await manager.PrepareUpdateAsync(result.LastVersion, Progress);
-
-                IsReadyToUpdate?.Invoke(this, null);
-
-                Lock.WaitOne();
-
-                manager.LaunchUpdater(result.LastVersion, RestartAfterUpdate);
-
-                return;
+        /// <exception cref="Onova.Exceptions.LockFileNotAcquiredException"></exception>
+        /// <exception cref="Onova.Exceptions.UpdaterAlreadyLaunchedException"></exception>
+        /// <exception cref="InvalidOperationException"></exception>
+        public async Task StartUpdateAsync() {
+            if( UpdatesResult == null ) {
+                throw new InvalidOperationException("Do not call this method before fetching updates!");
             }
 
-            HasFetchedUpdates?.Invoke(this, false);
+            if( !UpdatesResult.CanUpdate ) {
+                throw new InvalidOperationException("Do not call this method if there are no updates!");
+            }
+
+            using var manager = new Onova.UpdateManager(PackageResolver, new ZipPackageExtractor());
+
+            await manager.PrepareUpdateAsync(UpdatesResult.LastVersion, Progress);
+
+            IsReadyToUpdate?.Invoke(this, null);
+
+            Lock.WaitOne();
+
+            manager.LaunchUpdater(UpdatesResult.LastVersion, RestartAfterUpdate);
         }
     }
 }

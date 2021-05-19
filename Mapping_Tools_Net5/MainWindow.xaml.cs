@@ -7,13 +7,13 @@ using Mapping_Tools.Views.Standard;
 using Mapping_Tools_Net5.Updater;
 using MaterialDesignThemes.Wpf;
 using System;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Reflection;
 using System.Security.Principal;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -73,10 +73,34 @@ namespace Mapping_Tools {
             SessionhasAdminRights = IsUserAdministrator();
 
             try {
-                _updateManager.HasFetchedUpdates += OnHasFetchedUpdates;
+                Task.Run(async () => {
+                    var hasUpdate = await _updateManager.FetchUpdateAsync();
 
-                Task.Run(async () => await _updateManager.InitUpdateAsync());
+                    if( !hasUpdate ) {
+                        return;
+                    }
+
+                    var thread = new Thread(() => {
+                        var updaterWindow = new UpdaterWindow(_updateManager) {
+                            ShowActivated = true
+                        };
+
+                        updaterWindow.Show();
+
+                        updaterWindow.StartUpdateProcess();
+
+                        System.Windows.Threading.Dispatcher.Run();
+                    });
+
+                    thread.SetApartmentState(ApartmentState.STA);
+                    thread.Start();
+
+                    /*
+
+                    */
+                });
             }
+
             catch( Exception ex ) {
                 Console.WriteLine(ex.Message);
             }
@@ -85,23 +109,19 @@ namespace Mapping_Tools {
                 Directory.CreateDirectory(AppDataPath);
                 Directory.CreateDirectory(ExportPath);
             }
+
             catch( Exception ex ) {
                 ex.Show();
             }
 
             Views = new ViewCollection(); // Make a ViewCollection object
+
             ToolsMenu.ItemsSource = ViewCollection.GetAllToolTypes().Where(o => o.GetCustomAttribute<HiddenToolAttribute>() == null).Select(o => {
                 var name = ViewCollection.GetName(o);
                 var item = new MenuItem { Header = "_" + name, ToolTip = $"Open {name}." };
                 item.Click += ViewSelectMenuItemOnClick;
                 return item;
             }).OrderBy(o => o.Header);
-        }
-
-        private void OnHasFetchedUpdates(object sender, bool hasUpdate) {
-            if( hasUpdate ) {
-                new UpdaterWindow(_updateManager).Show();
-            }
         }
 
         private void Window_Closing(object sender, EventArgs e) {

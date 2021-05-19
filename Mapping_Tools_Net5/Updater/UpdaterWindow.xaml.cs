@@ -1,22 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Mapping_Tools_Net5.Updater {
 
-    /// <summary>
-    /// Interaktionslogik für Updater.xaml
-    /// </summary>
     public partial class UpdaterWindow :Window {
         private readonly IUpdateManager _updateManager;
 
@@ -25,12 +12,21 @@ namespace Mapping_Tools_Net5.Updater {
 
             _updateManager = updateManager;
 
-            _updateManager.IsReadyToUpdate += OnReadyToUpdate;
             _updateManager.Progress.ProgressChanged += OnDownloadProgressChanged;
+            _updateManager.IsReadyToUpdate += OnReadyToUpdate;
+        }
+
+        public async void StartUpdateProcess() {
+            try {
+                await _updateManager.StartUpdateAsync();
+            }
+            catch( Exception e ) {
+                MessageBox.Show(e.Message);
+            }
         }
 
         private void OnDownloadProgressChanged(object sender, double progress) {
-            progressBar.Value = progress;
+            Dispatcher.Invoke(() => progressBar.Value = progress);
         }
 
         private void OnReadyToUpdate(object sender, EventArgs e) {

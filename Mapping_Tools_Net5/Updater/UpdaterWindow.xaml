@@ -17,6 +17,6 @@
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Background="{DynamicResource MaterialDesignPaper}">
     <Grid>
-        <ProgressBar Name="progressBar" Minimum="0" Maximum="100"></ProgressBar>
+        <ProgressBar Name="progressBar" Minimum="0" Maximum="1"></ProgressBar>
     </Grid>
 </Window>
