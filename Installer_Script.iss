@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Mapping Tools"
-#define MyAppVersion "0.0.0.0"
+#define MyAppVersion "0.0.0"
 #define MyAppPublisher "OliBomby"
 #define MyAppURL "https://mappingtools.github.io/"
 #define MyAppExeName "Mapping_Tools_Net5.exe"
