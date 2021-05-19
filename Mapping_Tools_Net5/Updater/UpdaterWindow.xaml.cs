@@ -26,10 +26,30 @@ namespace Mapping_Tools_Net5.Updater {
         }
 
         private void OnDownloadProgressChanged(object sender, double progress) {
-            Dispatcher.Invoke(() => progressBar.Value = progress);
+            Dispatcher.Invoke(() => ProgressBar.Value = progress);
         }
 
         private void OnReadyToUpdate(object sender, EventArgs e) {
+            Dispatcher.Invoke(() => {
+                ReadyPanel.Visibility = Visibility.Visible;
+                DownloadText.Visibility = Visibility.Hidden;
+                ProgressBar.Visibility = Visibility.Hidden;
+            });
+        }
+
+        private void RestartBtn_Click(object sender, RoutedEventArgs e) {
+            _updateManager.RestartAfterUpdate = true;
+            _updateManager.Lock.Set();
+            Dispatcher.Invoke(() => Close());
+        }
+
+        private void WaitBtn_Click(object sender, RoutedEventArgs e) {
+            _updateManager.Lock.Set();
+            Dispatcher.Invoke(() => Close());
+        }
+
+        private void SkipBtn_Click(object sender, RoutedEventArgs e) {
+            Dispatcher.Invoke(() => Close());
         }
     }
 }

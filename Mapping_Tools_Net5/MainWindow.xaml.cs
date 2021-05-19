@@ -94,10 +94,6 @@ namespace Mapping_Tools {
 
                     thread.SetApartmentState(ApartmentState.STA);
                     thread.Start();
-
-                    /*
-
-                    */
                 });
             }
 

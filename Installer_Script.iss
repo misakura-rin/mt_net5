@@ -2,9 +2,9 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Mapping Tools"
-#define MyAppVersion "1.8.1.0"
+#define MyAppVersion "0.0.0"
 #define MyAppPublisher "OliBomby"
-#define MyAppURL "https://mappingtools.seira.moe/"
+#define MyAppURL "https://mappingtools.github.io/"
 #define MyAppExeName "Mapping Tools.exe"
 
 [Setup]
@@ -23,9 +23,9 @@ DisableProgramGroupPage=yes
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-OutputDir=D:\Collections\Inno
+OutputDir=.\
 OutputBaseFilename=mapping-tools
-SetupIconFile=C:\Users\Olivier\Documents\GitHub\Mapping_Tools\Mapping Tools\Data\mt_icon.ico
+SetupIconFile=.\Mapping_Tools_Net5\Data\mt_icon.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
