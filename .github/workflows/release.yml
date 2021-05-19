@@ -47,4 +47,4 @@ jobs:
         prerelease: false
         files: |
           release.zip
-          Mapping Tools Installer.exe
+          mapping-tools-installer.exe
