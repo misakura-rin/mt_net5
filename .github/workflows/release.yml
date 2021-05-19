@@ -33,7 +33,7 @@ jobs:
       run: sed -i 's/#define MyAppVersion \"[0-9].[0-9].[0-9]\"/#define MyAppVersion \"$env:cleanVersion\"/' Installer_Script.iss
     
     - name: Build Installer
-      run: iscc Mapping_Tools_Script.iss
+      run: iscc Installer_Script.iss
 
     - name: Create release.zip
       uses: papeloto/action-zip@v1
