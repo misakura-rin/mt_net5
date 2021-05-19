@@ -38,7 +38,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Files]
 Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\EditorReader.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.deps.json.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.deps.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.dll.config"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.exe"; DestDir: "{app}"; Flags: ignoreversion
