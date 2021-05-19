@@ -24,6 +24,9 @@ jobs:
     - name: Replace Installer version
       run: sed -i 's/#define MyAppVersion \"[0-9].[0-9].[0-9]\"/#define MyAppVersion \"${{ steps.get_version.outputs.version-without-v }}\"/' Installer_Script.iss
     
+    - name: Replace Installer .exe version
+      run: sed -i 's/OutputBaseFilename=mapping-tools-installer/OutputBaseFilename=mapping-tools-installer-${{ steps.get_version.outputs.version-without-v }}/' Installer_Script.iss
+
     - name: Replace Assembly version
       run: sed -i 's/<AssemblyVersion>[0-9].[0-9].[0-9]/<AssemblyVersion>${{ steps.get_version.outputs.version-without-v }}/' Mapping_Tools_Net5\Mapping_Tools_Net5.csproj
 
@@ -54,4 +57,4 @@ jobs:
         prerelease: false
         files: |
           release.zip
-          mapping-tools-installer.exe
+          mapping-tools-installer-${{ steps.get_version.outputs.version-without-v }}.exe
