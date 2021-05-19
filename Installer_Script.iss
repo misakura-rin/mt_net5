@@ -5,7 +5,7 @@
 #define MyAppVersion "0.0.0.0"
 #define MyAppPublisher "OliBomby"
 #define MyAppURL "https://mappingtools.github.io/"
-#define MyAppExeName "Mapping Tools Installer.exe"
+#define MyAppExeName "Mapping_Tools_Net5.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
