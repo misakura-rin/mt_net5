@@ -40,9 +40,9 @@ jobs:
 
     - name: Create release.zip
       uses: papeloto/action-zip@v1
-        with:
-          files: Mapping_tools_Net5/bin/Release/net5.0-windows/
-          dest: release.zip
+      with:
+        files: Mapping_tools_Net5/bin/Release/net5.0-windows/
+        dest: release.zip
 
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
