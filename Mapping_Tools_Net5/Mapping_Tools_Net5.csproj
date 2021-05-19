@@ -24,10 +24,18 @@
   </Target>
 
   <ItemGroup>
-    <Reference Include="..\packages\EditorReader.dll"></Reference>
-    <Reference Include="..\packages\OggVorbisEncoder.dll"></Reference>
-    <Reference Include="..\packages\OsuMemoryDataProvider.dll"></Reference>
-    <Reference Include="..\packages\ProcessMemoryDataFinder.dll"></Reference>
+    <Reference Include="..\packages\EditorReader.dll">
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="..\packages\OggVorbisEncoder.dll">
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="..\packages\OsuMemoryDataProvider.dll">
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="..\packages\ProcessMemoryDataFinder.dll">
+      <Private>true</Private>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
@@ -45,8 +53,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Data\mt_icon.ico" />
-    <Resource Include="Data\mt_logo_white_24.png" />
+    <Resource Include="Data\mt_icon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Data\mt_logo_white_24.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
