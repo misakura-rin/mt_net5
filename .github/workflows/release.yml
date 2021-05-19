@@ -18,7 +18,7 @@ jobs:
         dotnet-version: 5.0.x
 
     - name: Set clean tag versioning
-      run: $env:cleanVersion = "${${GITHUB_REF#refs/tags/}:1}
+      run: $env:cleanVersion = "${${GITHUB_REF#refs/tags/}:1}"
 
     - name: Test clean tag versioning
       run: echo $env:cleanVersion
