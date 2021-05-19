@@ -24,16 +24,16 @@
   </Target>
 
   <ItemGroup>
-    <Reference Include="..\packages\EditorReader.dll">
+    <Reference Include="..\lib\EditorReader.dll">
       <Private>true</Private>
     </Reference>
-    <Reference Include="..\packages\OggVorbisEncoder.dll">
+    <Reference Include="..\lib\OggVorbisEncoder.dll">
       <Private>true</Private>
     </Reference>
-    <Reference Include="..\packages\OsuMemoryDataProvider.dll">
+    <Reference Include="..\lib\OsuMemoryDataProvider.dll">
       <Private>true</Private>
     </Reference>
-    <Reference Include="..\packages\ProcessMemoryDataFinder.dll">
+    <Reference Include="..\lib\ProcessMemoryDataFinder.dll">
       <Private>true</Private>
     </Reference>
   </ItemGroup>
