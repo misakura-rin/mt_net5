@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Mapping Tools"
-#define MyAppVersion "0.0.0"
+#define MyAppVersion "0.0.0.0"
 #define MyAppPublisher "OliBomby"
 #define MyAppURL "https://mappingtools.github.io/"
 #define MyAppExeName "Mapping Tools Installer.exe"
@@ -37,7 +37,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: Mapping_Tools_Net5\bin\Release\net5.0-windows\EditorReader.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\EditorReader.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.deps.json.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Mapping_Tools_Net5\bin\Release\net5.0-windows\Mapping_Tools_Net5.dll.config"; DestDir: "{app}"; Flags: ignoreversion
