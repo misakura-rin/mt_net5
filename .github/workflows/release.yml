@@ -30,25 +30,10 @@ jobs:
       with:
         files: Mapping_tools_Net5/bin/Release/net5.0-windows/
         dest: release.zip
-      
-    - name: Create Release
-      uses: actions/create-release@latest
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - uses: "marvinpinto/action-automatic-releases@latest"
       with:
-        tag_name: ${{ github.ref }}
-        release_name: ${{ github.ref }}
-        body: |
-          Automated Release by GitHub Action CI
-        draft: false
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
         prerelease: false
-        
-    - name: Upload Release Asset (x64)
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: release.zip
-        asset_name: release.zip
-        asset_content_type: application/zip
+        files: |
+          release.zip
